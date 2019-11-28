@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+
+    <bean name="user" class="pojo.User" >
+        <!--set方法注入-->
+        <property name="name" value="wangwu"></property>
+        <property name="age" value="22"></property>
+        <property name="car" ref="car"></property>
+        <property name="scores">
+            <list>
+                <value>92</value>
+                <value>66</value>
+                <value>33</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="user1" class="pojo.User" >
+        <!--构造方法注入-->
+        <constructor-arg name="name" value="#{user.name}"></constructor-arg>
+        <constructor-arg name="car" ref="car"></constructor-arg>
+    </bean>
+
+    <bean name="car" class="pojo.Car">
+        <property name="name" value="兰博基尼"></property>
+        <property name="color" value="蓝色"></property>
+    </bean>
+
+</beans>
