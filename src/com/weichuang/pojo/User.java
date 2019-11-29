@@ -1,10 +1,22 @@
-package pojo;
+package com.weichuang.pojo;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
+@Service   //业务层service层
+@Repository  //dao类放入Spring容器中
+@Controller //SpringMvc框架表示uri接口接收类
 public class User implements Serializable{
+
     private String name;
     private int age;
     private Car car;
@@ -22,7 +34,7 @@ public class User implements Serializable{
     public String getName() {
         return name;
     }
-
+    @Value("zhangsan")
     public void setName(String name) {
         this.name = name;
     }

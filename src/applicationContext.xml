@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="com.weichuang"/>
 
-    <bean name="user" class="pojo.User" >
-        <!--set方法注入-->
+   <!-- <bean name="user" class="com.weichuang.pojo.User" >
+        &lt;!&ndash;set方法注入&ndash;&gt;
         <property name="name" value="wangwu"></property>
         <property name="age" value="22"></property>
         <property name="car" ref="car"></property>
@@ -17,13 +20,13 @@
         </property>
     </bean>
 
-    <bean name="user1" class="pojo.User" >
-        <!--构造方法注入-->
-        <constructor-arg name="name" value="#{user.name}"></constructor-arg>
-        <constructor-arg name="car" ref="car"></constructor-arg>
+  -->
+    <bean name="user2" class="com.weichuang.pojo.User" scope="prototype">
+        <property name="name" value="wangwu"></property>
+        <property name="age" value="22"></property>
     </bean>
 
-    <bean name="car" class="pojo.Car">
+    <bean name="car" class="com.weichuang.pojo.Car">
         <property name="name" value="兰博基尼"></property>
         <property name="color" value="蓝色"></property>
     </bean>
