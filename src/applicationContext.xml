@@ -2,8 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:aop="http://www.springframework.org/schema/aop"
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
     <context:component-scan base-package="com.weichuang"/>
 
    <!-- <bean name="user" class="com.weichuang.pojo.User" >
@@ -21,7 +22,7 @@
     </bean>
 
   -->
-    <bean name="user2" class="com.weichuang.pojo.User" scope="prototype">
+   <!-- <bean name="user2" class="com.weichuang.pojo.User" scope="prototype">
         <property name="name" value="wangwu"></property>
         <property name="age" value="22"></property>
     </bean>
@@ -29,6 +30,22 @@
     <bean name="car" class="com.weichuang.pojo.Car">
         <property name="name" value="兰博基尼"></property>
         <property name="color" value="蓝色"></property>
-    </bean>
+    </bean>-->
+
+    <bean name="myAdvice" class="com.weichuang.advice.MyAdvice"></bean>
+
+    <bean name="userService" class="com.weichuang.proxy.UserServiceImpl"></bean>
+    <bean name="productService" class="com.weichuang.service.ProductServiceImpl"></bean>
+    <aop:config>
+        <!--切入点配置-->
+        <aop:pointcut id="pc" expression="execution(* com.weichuang.service.*Impl.*())"></aop:pointcut>
+        <aop:aspect ref="myAdvice">
+            <aop:before method="before" pointcut-ref="pc"></aop:before>
+            <aop:after method="after" pointcut-ref="pc"></aop:after>
+            <aop:around method="around" pointcut-ref="pc"></aop:around>
+            <aop:after-throwing method="afterThrowing" pointcut-ref="pc"></aop:after-throwing>
+            <aop:after-returning method="afterReturning" pointcut-ref="pc"></aop:after-returning>
+        </aop:aspect>
+    </aop:config>
 
 </beans>

@@ -11,10 +11,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+/*@Component
 @Service   //业务层service层
 @Repository  //dao类放入Spring容器中
-@Controller //SpringMvc框架表示uri接口接收类
+@Controller //SpringMvc框架表示uri接口接收类*/
 public class User implements Serializable{
 
     private String name;

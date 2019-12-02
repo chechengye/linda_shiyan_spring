@@ -10,7 +10,7 @@ import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.io.Serializable;
 
-@Component
+//@Component
 public class Order implements Serializable{
 
     //@Value("26536256326")

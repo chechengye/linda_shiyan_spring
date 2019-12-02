@@ -13,14 +13,13 @@ public class UserProxyFactory implements InvocationHandler{
     }
 
     public  UserService getUserService(){
-        UserService userService = (UserService) Proxy.newProxyInstance(UserProxyFactory.class.getClassLoader(), UserService.class.getInterfaces(), UserProxyFactory.this);
-        return userService;
+        return (UserService) Proxy.newProxyInstance(UserProxyFactory.class.getClassLoader(), us.getClass().getInterfaces(), UserProxyFactory.this);
     }
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("增强前的方法");
-        Object invoke = method.invoke(proxy, args);
+        Object invoke = method.invoke(us, args);
         System.out.println("增强后的方法");
         return invoke;
     }
