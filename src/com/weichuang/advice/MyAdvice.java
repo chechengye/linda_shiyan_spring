@@ -1,14 +1,23 @@
 package com.weichuang.advice;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 
 /**
  * 自定义通知类
  */
+@Aspect
 public class MyAdvice {
+
+    @Pointcut("execution(* com.weichuang.service.*Impl.*())")
+    public void pc(){}
     /*
        前置通知方法
      */
+    @Before("MyAdvice.pc()")
     public void before(){
         System.out.println("前置通知");
     }
@@ -16,6 +25,7 @@ public class MyAdvice {
     /**
      * 最终通知，相当于try,catch , finally
      */
+    @After("MyAdvice.pc()")
     public void after(){
         System.out.println("后置通知");
     }

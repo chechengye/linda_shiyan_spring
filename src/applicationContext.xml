@@ -36,8 +36,8 @@
 
     <bean name="userService" class="com.weichuang.proxy.UserServiceImpl"></bean>
     <bean name="productService" class="com.weichuang.service.ProductServiceImpl"></bean>
-    <aop:config>
-        <!--切入点配置-->
+<!--    <aop:config>
+        &lt;!&ndash;切入点配置&ndash;&gt;
         <aop:pointcut id="pc" expression="execution(* com.weichuang.service.*Impl.*())"></aop:pointcut>
         <aop:aspect ref="myAdvice">
             <aop:before method="before" pointcut-ref="pc"></aop:before>
@@ -46,6 +46,14 @@
             <aop:after-throwing method="afterThrowing" pointcut-ref="pc"></aop:after-throwing>
             <aop:after-returning method="afterReturning" pointcut-ref="pc"></aop:after-returning>
         </aop:aspect>
-    </aop:config>
+    </aop:config>-->
+    <!--开启了aop通知注解配置-->
+    <aop:aspectj-autoproxy/>
 
+    <!--c3p0数据源-->
+    <bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"></bean>
+    <!--jdbc摸版对象-->
+    <bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
 </beans>
